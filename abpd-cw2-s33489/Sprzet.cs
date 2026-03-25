@@ -4,7 +4,7 @@ public class Sprzet {
     private static int previousId;
     private int id { get; }
     private string name { get; set; }
-    private bool dostep { get; set; } = true;
+    public bool dostep { get; set; } = true;
     private int[] resolution { get; }
 
     public Sprzet(string name, bool dostep, int[] resolution) {
