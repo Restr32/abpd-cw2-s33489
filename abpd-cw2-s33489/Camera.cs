@@ -11,4 +11,9 @@ public class Camera : Sprzet{
         this.producent = producent;
         this.usb = usb;
     }
+
+    public override string ToString() {
+        return base.ToString() + $"Producent: {producent} " +
+               $"Czy ma usb: {usb}\tCamera";
+    }
 }

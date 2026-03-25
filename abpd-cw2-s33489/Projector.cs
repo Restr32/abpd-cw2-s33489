@@ -12,4 +12,9 @@ public class Projector : Sprzet {
         this.brightness = brightness;
         this.hdmi = hdmi;
     }
+
+    public override string ToString() {
+        return base.ToString() + $"Brightness: {brightness} " +
+               $"Czy ma hdmi: {hdmi}\tProjektor";
+    }
 }

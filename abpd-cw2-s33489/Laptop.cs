@@ -12,4 +12,9 @@ public class Laptop : Sprzet{
         this.ram = ram;
         this.dyskGb = dyskGb;
     }
+
+    public override string ToString() {
+        return base.ToString() + $"RAM: {ram}GB " +
+               $"Dysk: {dyskGb}GB\tLaptop";
+    }
 }

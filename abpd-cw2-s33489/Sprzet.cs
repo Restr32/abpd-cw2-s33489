@@ -21,4 +21,10 @@ public class Sprzet {
         id = previousId;
         previousId++;
     }
+
+    public override string ToString() {
+        return $"{name} " +
+               $"Resolution: [{resolution[0]}, {resolution[1]}] " +
+               $" Dostępność: {dostep}  ";
+    }
 }
