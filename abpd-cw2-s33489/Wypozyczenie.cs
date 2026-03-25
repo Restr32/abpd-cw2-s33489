@@ -3,11 +3,11 @@
 public class Wypozyczenie { //wyporzyczenie na 90 dni
     private static int prevId;
     public int id;
-    private Czlowiek kto { get; }
+    public Czlowiek kto { get; }
     private Sprzet co { get; }
     private DateTime kiedy { get; }
     private int dni { get; }
-    private bool zwrotTermin { get; }
+    public bool zwrotTermin { get; }
 
     public Wypozyczenie(Czlowiek kto, Sprzet co, int dni) {
         this.kto = kto;

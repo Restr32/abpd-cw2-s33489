@@ -1,7 +1,7 @@
 ﻿namespace abpd_cw2_s33489;
 
 public class Czlowiek {
-    private int id { get; }
+    public int id { get; }
     private string name { get; set; }
     private string surname { get; set; }
     public uzytkownik typ { get; set; }
