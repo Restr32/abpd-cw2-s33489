@@ -131,10 +131,34 @@ public class Serwis {
     public void wysAktUzyt(int czloid) {
         foreach (var wal in wypoz)
         {
-            if (!wal.zwrotTermin)
+            if (wal.kto.id == czloid && !wal.zwrotTermin)
             {
                 Console.WriteLine(wal.ToString());
             }
         }
+    }
+
+    public void wysZaUzyt() {
+        foreach (var wal in wypoz)
+        {
+            if (!wal.zwrotTermin && !wal.isOnTime((DateTime.Now-wal.kiedy).Days))
+            {
+                Console.WriteLine(wal.ToString());
+            }
+        }
+    }
+
+    public void raport() {
+        Console.WriteLine("Aktywnych wypożyczeń:");
+        foreach (var val in user)
+        {
+            wysAktUzyt(val.id);
+        }
+        Console.WriteLine("Przeterminowane wypożyczenia:");
+        wysZaUzyt();
+        Console.WriteLine("Wszystkie urządzenia:");
+        getMeSprzet();
+        Console.WriteLine("Z tego dostępnych");
+        getMeOpen();
     }
 }
