@@ -8,4 +8,5 @@ public class Puppeteer {
         serwo.addSprzet(new Laptop("ASUS", new []{1080, 1920}, 32, 128));
         serwo.getMeSprzet();
     }
+    
 }

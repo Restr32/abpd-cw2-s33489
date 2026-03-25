@@ -30,8 +30,5 @@ public class Serwis {
     public void addSprzet(Sprzet sprzet) {
         this.sprzet.Add(sprzet);
     }
-
-    public void wypozyczenie(Czlowiek czlo) {
-        
-    }
+    
 }
