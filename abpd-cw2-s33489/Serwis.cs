@@ -4,7 +4,7 @@ using System.Security.AccessControl;
 namespace abpd_cw2_s33489;
 
 public class Serwis {
-    private List<Wypozyczenie> wypoz;
+    public List<Wypozyczenie> wypoz { get; }
     private List<Czlowiek> user;
     private List<Sprzet> sprzet { get; }
 
@@ -41,7 +41,7 @@ public class Serwis {
     
     
 
-    public void wypozyczenie(int czloId, int sprzeId, int dni) {
+    public void wypozyczenie(int czloId, int sprzeId) {
         bool isExist = false;
         Czlowiek typ = user[0];
         foreach (var czlos in user)
@@ -74,12 +74,12 @@ public class Serwis {
             throw new Exception("Nie ma takiego sprzetu");
         }
 
-        if (tmp.dostep)
+        if (!tmp.dostep)
         {
             throw new Exception("Sprzęt niedostępny");
         }
 
-        int count = wypoz.Count(wypozyczenie1 => wypozyczenie1.kto.id == czloId && wypozyczenie1.zwrotTermin);
+        int count = wypoz.Count(wypozyczenie1 => wypozyczenie1.kto.id == czloId && !wypozyczenie1.zwrotTermin);
 
         if (count >= (typ.typ == uzytkownik.Student?Reduly.student:Reduly.employ))
         {
