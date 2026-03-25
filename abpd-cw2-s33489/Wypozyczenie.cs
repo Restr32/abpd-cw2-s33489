@@ -4,22 +4,30 @@ public class Wypozyczenie { //wyporzyczenie na 90 dni
     private static int prevId;
     public int id;
     public Czlowiek kto { get; }
-    private Sprzet co { get; }
-    private DateTime kiedy { get; }
-    private int dni { get; }
-    public bool zwrotTermin { get; }
+    public Sprzet co { get; }
+    public DateTime kiedy { get; }
+    public int dni { get; } = 30;
+    public bool zwrotTermin { get; set; }
 
     public Wypozyczenie(Czlowiek kto, Sprzet co, int dni) {
         this.kto = kto;
         this.co = co;
         kiedy = DateTime.Now;
         this.dni = dni;
-        zwrotTermin = isOnTime();
+        zwrotTermin = isOnTime(dni);
+        id = prevId;
+        prevId++;
+    }
+    
+    public Wypozyczenie(Czlowiek kto, Sprzet co) {
+        this.kto = kto;
+        this.co = co;
+        kiedy = DateTime.Now;
         id = prevId;
         prevId++;
     }
 
-    private bool isOnTime() {
+    public bool isOnTime(int dni) {
         return kiedy.AddDays(dni) <= kiedy.AddDays(Reduly.days);
     }
 }

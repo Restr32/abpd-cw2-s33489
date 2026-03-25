@@ -88,4 +88,24 @@ public class Serwis {
         tmp.dostep = false;
         wypoz.Add(new Wypozyczenie(typ, tmp));
     }
+
+    public double returnSprzet(int sprzeid) {
+        bool isExist = false;
+        Wypozyczenie tmp;
+        foreach (var spr in wypoz)
+        {
+            if (spr.co.id == sprzeid)
+            {
+                isExist = !isExist;
+                tmp = spr;
+            }
+        }
+
+        if (!isExist)
+        {
+            throw new Exception("Nie został wydany");
+        }
+
+        tmp.zwrotTermin = true;
+    }
 }
