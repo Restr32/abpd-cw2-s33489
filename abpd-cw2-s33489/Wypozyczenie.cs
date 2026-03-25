@@ -30,4 +30,8 @@ public class Wypozyczenie { //wyporzyczenie na 90 dni
     public bool isOnTime(int dni) {
         return kiedy.AddDays(dni) <= kiedy.AddDays(Reduly.days);
     }
+
+    public override string ToString() {
+        return kto.ToString() +" "+ co.ToString() +" "+kiedy.ToString() ;
+    }
 }

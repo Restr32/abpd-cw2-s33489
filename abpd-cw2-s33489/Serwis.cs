@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Security.AccessControl;
 
 namespace abpd_cw2_s33489;
 
@@ -42,7 +43,7 @@ public class Serwis {
 
     public void wypozyczenie(int czloId, int sprzeId, int dni) {
         bool isExist = false;
-        Czlowiek typ;
+        Czlowiek typ = user[0];
         foreach (var czlos in user)
         {
             if (czlos.id == czloId)
@@ -58,7 +59,7 @@ public class Serwis {
         }
 
         isExist = false;
-        Sprzet tmp;
+        Sprzet tmp = sprzet[0];
         foreach (var spr in sprzet)
         {
             if (spr.id == sprzeId)
@@ -80,7 +81,7 @@ public class Serwis {
 
         int count = wypoz.Count(wypozyczenie1 => wypozyczenie1.kto.id == czloId && wypozyczenie1.zwrotTermin);
 
-        if (count >= typ.typ == uzytkownik.Student?Reduly.student:Reduly.employ)
+        if (count >= (typ.typ == uzytkownik.Student?Reduly.student:Reduly.employ))
         {
             throw new Exception("Przekroczono limit");
         }
@@ -91,7 +92,7 @@ public class Serwis {
 
     public double returnSprzet(int sprzeid) {
         bool isExist = false;
-        Wypozyczenie tmp;
+        Wypozyczenie tmp = wypoz[0];
         foreach (var spr in wypoz)
         {
             if (spr.co.id == sprzeid)
@@ -107,5 +108,33 @@ public class Serwis {
         }
 
         tmp.zwrotTermin = true;
+        int ind = (DateTime.Now - tmp.kiedy).Days;
+        if (!tmp.isOnTime(ind))
+        {
+            return (90 - ind) * Reduly.dailyKoszt;
+        }
+        return 0;
+    }
+
+    public void setUszkodzone(int sprzeid) {
+        bool isExist = false;
+        Sprzet tmp = sprzet[0];
+        foreach (var spr in sprzet)
+        {
+            if (spr.id == sprzeid)
+            {
+                spr.dostep = false;
+            }
+        }
+    }
+
+    public void wysAktUzyt(int czloid) {
+        foreach (var wal in wypoz)
+        {
+            if (!wal.zwrotTermin)
+            {
+                Console.WriteLine(wal.ToString());
+            }
+        }
     }
 }
